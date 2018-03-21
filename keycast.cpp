@@ -320,6 +320,7 @@ bool outOfLine(LPCWSTR text) {
     bool out = cx >= canvasSize.cx;
     return out;
 }
+
 /*
  * behavior 0: append text to last label
  * behavior 1: create a new label with text
@@ -337,6 +338,8 @@ void showText(LPCWSTR text, int behavior = 0) {
         fflush(capStream);
     }
 #endif
+
+    if (labelCount <= 0 && (behavior == 0 || behavior == 2)) behavior = 1;
 
     DWORD i;
     if (behavior == 2) {

@@ -12,10 +12,10 @@ struct Key {
     LPCWSTR label;
 };
 struct Key specialKeys[] = {
-    {0x08, L"Backspace"},                 // back
-    {0x09, L"Tab"},
-    {0x0C, L"Clear"},
-    {0x0D, L"Enter"},              // enter
+    {0x08, L"back"},              // back Backspace
+    {0x09, L"TAB"},               // Tab
+    {0x0C, L"clear"},
+    {0x0D, L"RET"},               // enter Enter
     {0x10, L"Shift"},
     {0x11, L"Control"},
     {0x12, L"Menu"},
@@ -25,29 +25,29 @@ struct Key specialKeys[] = {
     {0x17, L"Junja"},
     {0x18, L"Final"},
     {0x19, L"Kanji"},
-    {0x1B, L"Esc"},               // escape
+    {0x1B, L"ESC"},               // escape
     {0x1C, L"Convert"},
     {0x1D, L"Nonconvert"},
     {0x1E, L"Accept"},
     {0x1F, L"ModeChange"},
-    {0x20, L"Space"},              // space
-    {0x21, L"PageUp"},
-    {0x22, L"PageDown"},
-    {0x23, L"End"},
-    {0x24, L"Home"},
-    {0x25, L"\u2190"},              // left
-    {0x26, L"\u2191"},              // up
-    {0x27, L"\u2192"},              // right
-    {0x28, L"\u2193"},              // down
+    {0x20, L"SP"},                // space Space
+    {0x21, L"prev"},              // PageUp
+    {0x22, L"next"},              // PageDown
+    {0x23, L"end"},               // End
+    {0x24, L"home"},              // Home
+    {0x25, L"left"},              // left  \u2190
+    {0x26, L"up"},                // up    \u2191
+    {0x27, L"right"},             // right \u2192
+    {0x28, L"down"},              // down  \u2193
     {0x29, L"Select"},
     {0x2A, L"Print"},
     {0x2B, L"Execute"},
     {0x2C, L"Snapshot"},
-    {0x2D, L"Insert"},
-    {0x2E, L"Delete"},
+    {0x2D, L"insert"},            // Insert
+    {0x2E, L"delete"},            // Delete
     {0x2F, L"Help"},
-    {0x5B, L"Win"},
-    {0x5C, L"Win"},
+    {0x5B, L"super"},             // Win
+    {0x5C, L"Hyper"},             // Win
     {0x5D, L"Apps"},
     {0x5F, L"Sleep"},
     {0x6A, L"Multiply"},
@@ -56,38 +56,38 @@ struct Key specialKeys[] = {
     {0x6D, L"Subtract"},
     {0x6E, L"Decimal"},
     {0x6F, L"Divide"},
-    {0x70, L"F1"},
-    {0x71, L"F2"},
-    {0x72, L"F3"},
-    {0x73, L"F4"},
-    {0x74, L"F5"},
-    {0x75, L"F6"},
-    {0x76, L"F7"},
-    {0x77, L"F8"},
-    {0x78, L"F9"},
-    {0x79, L"F10"},
-    {0x7A, L"F11"},
-    {0x7B, L"F12"},
-    {0x7C, L"F13"},
-    {0x7D, L"F14"},
-    {0x7E, L"F15"},
-    {0x7F, L"F16"},
-    {0x80, L"F17"},
-    {0x81, L"F18"},
-    {0x82, L"F19"},
-    {0x83, L"F20"},
-    {0x84, L"F21"},
-    {0x85, L"F22"},
-    {0x86, L"F23"},
-    {0x87, L"F24"},
+    {0x70, L"f1"},   // F2
+    {0x71, L"f2"},   // F3
+    {0x72, L"f3"},   // F4
+    {0x73, L"f4"},   // F5
+    {0x74, L"f5"},   // F6
+    {0x75, L"f6"},   // F7
+    {0x76, L"f7"},   // F8
+    {0x77, L"f8"},   // F9
+    {0x78, L"f9"},   // F10
+    {0x79, L"f10"},  // F11
+    {0x7A, L"f11"},  // F12
+    {0x7B, L"f12"},  // F13
+    {0x7C, L"f13"},  // F14
+    {0x7D, L"f14"},  // F15
+    {0x7E, L"f15"},  // F16
+    {0x7F, L"f16"},  // F17
+    {0x80, L"f17"},  // F18
+    {0x81, L"f18"},  // F19
+    {0x82, L"f19"},  // F20
+    {0x83, L"f20"},  // F21
+    {0x84, L"f21"},  // F22
+    {0x85, L"f22"},  // F23
+    {0x86, L"f23"},  // F24
+    {0x87, L"f24"},
     {0x90, L"NumLock"},
     {0x91, L"ScrollLock"},
     {0xA0, L"Shift"},
     {0xA1, L"Shift"},
-    {0xA2, L"Ctrl"},
-    {0xA3, L"Ctrl"},
-    {0xA4, L"Alt"},
-    {0xA5, L"Alt"},
+    {0xA2, L"Control"},
+    {0xA3, L"Control"},
+    {0xA4, L"Meta"},              // Alt
+    {0xA5, L"Meta"},              // Alt
     {0xA6, L"BrowserBack"},
     {0xA7, L"BrowserForward"},
     {0xA8, L"BrowserRefresh"},
@@ -121,6 +121,8 @@ struct Key specialKeys[] = {
     {0xE2, L"OEM_102"},
     {0xE5, L"PROCESSKEY"},
     {0xE7, L"PACKET"},
+    {0xF3, L"hankaku"},
+    {0xF4, L"zenkaku"},
     {0xF6, L"ATTN"},
     {0xF7, L"CRSEL"},
     {0xF8, L"EXSEL"},
@@ -208,7 +210,7 @@ LPCWSTR GetSymbolFromVK(UINT vk, UINT sc, BOOL mod, HKL hklLayout) {
     if(rr > 0) {
         if(!visibleShift && mod && GetKeyState(VK_SHIFT) < 0) {
             // prefix "Shift - " only when Ctrl or Alt is hold (mod as TRUE)
-            swprintf(symbol, 32, L"Shift %c %s", comboChars[1], cc);
+            swprintf(symbol, 32, L"S%c%s", comboChars[1], cc);
         } else {
             swprintf(symbol, 32, L"%s", cc);
             symbol[rr] = L'\0';
@@ -234,7 +236,7 @@ void addBracket(LPWSTR str) {
         swprintf(str, 64, L"%c%s%c", comboChars[0], tmp, comboChars[2]);
     }
 }
-LPCWSTR getModSpecialKey(UINT vk, BOOL mod = FALSE) {
+LPCWSTR getModSpecialKey(UINT vk, BOOL mod = FALSE, DWORD count = 1) {
     static WCHAR modsk[64];
     if( vk == 0xA0 || vk == 0xA1) {
         if(!mod) {
@@ -248,9 +250,20 @@ LPCWSTR getModSpecialKey(UINT vk, BOOL mod = FALSE) {
         LPCWSTR sk = getSpecialKey(vk);
         if(!visibleShift && GetKeyState(VK_SHIFT) < 0) {
             // prefix "Shift - "
-            swprintf(tmp, 64, L"Shift %c %s", comboChars[1], sk);
-            sk= tmp;
+            swprintf(tmp, 64, L"S%c%s", comboChars[1], sk);
+            sk = tmp;
         }
+
+        if (count > 1) {
+            if (sk == tmp) {
+                size_t const len = wcslen(tmp);
+                swprintf(tmp + len, 64 - len, L" (%u)", (unsigned) count);
+            } else {
+                swprintf(tmp, L"%s (%d)", sk, count);
+                sk = tmp;
+            }
+        }
+
         if(!mod && HIBYTE(sk[0]) == 0) {
             // if the special key is not used with modifierkey, and has not been replaced with visible symbol
             // then surround it with <>
@@ -286,6 +299,31 @@ void cleanModifier(UINT vk, LPWSTR modifierkeys) {
     }
 }
 
+struct repeated_keyinfo_t {
+    DWORD prevvk;
+    DWORD prevvk_count;
+
+    repeated_keyinfo_t() {
+        this->prevvk = 0;
+        this->prevvk_count = 0;
+    }
+
+    DWORD get_count(DWORD vkCode) const {
+        return this->prevvk == vkCode ? 1 + prevvk_count : 1;
+    }
+
+    void set_key(DWORD vkCode) {
+        if (prevvk == vkCode)
+          prevvk_count++;
+        else {
+          prevvk = vkCode;
+          prevvk_count = 1;
+        }
+    }
+};
+
+struct repeated_keyinfo_t repeated_keyinfo;
+
 static WCHAR modifierkey[64] = L"\0";
 static BOOL modifierUsed = FALSE;
 LRESULT CALLBACK LLKeyboardProc(int nCode, WPARAM wp, LPARAM lp)
@@ -293,7 +331,6 @@ LRESULT CALLBACK LLKeyboardProc(int nCode, WPARAM wp, LPARAM lp)
     KBDLLHOOKSTRUCT k = *(KBDLLHOOKSTRUCT *)lp;
     WCHAR c[64] = L"\0";
     WCHAR tmp[64] = L"\0";
-    const WCHAR * theKey = NULL;
 
     if(nCode < 0)
         return CallNextHookEx(kbdhook, nCode, wp, lp);
@@ -326,7 +363,6 @@ LRESULT CALLBACK LLKeyboardProc(int nCode, WPARAM wp, LPARAM lp)
             fadeLastLabel(FALSE);
             return TRUE;
         }
-        int fin = 0;
         if(k.vkCode >= spk && k.vkCode <= 0xA5 ||          // ctrl / alt
                 k.vkCode == 0x5B || k.vkCode == 0x5C) {     // win
             LPCWSTR ck = getSpecialKey(k.vkCode);
@@ -334,7 +370,7 @@ LRESULT CALLBACK LLKeyboardProc(int nCode, WPARAM wp, LPARAM lp)
                 wcscpy_s(modifierkey, 64, ck);
             } else if(!wcsstr(modifierkey, ck)) {
                 wcscpy_s(tmp, 64, modifierkey);
-                swprintf(modifierkey, 64, L"%s %c %s", tmp, comboChars[1], ck);
+                swprintf(modifierkey, 64, L"%c%c%s", tmp[0], comboChars[1], ck);
             }
             if(!modifierUsed && visibleModifier) {
                 swprintf(c, 64, L"%s", modifierkey);
@@ -346,32 +382,43 @@ LRESULT CALLBACK LLKeyboardProc(int nCode, WPARAM wp, LPARAM lp)
                 }
             }
         } else {
-            WORD a = 0;
-            BOOL mod = modifierkey[0] != '\0';
+            DWORD const count = repeated_keyinfo.get_count(k.vkCode);
+            BOOL const mod = modifierkey[0] != '\0';
+
+            bool isSpecialKey = false;
+            const WCHAR * theKey = NULL;
             if(k.vkCode == 0x08 || k.vkCode == 0x09 || k.vkCode == 0x0D || k.vkCode == 0x1B || k.vkCode == 0x20) {
                 // for <BS>/<Tab>/<ENTER>/<ESC>/<SPACE>, treat them as specialKeys
-                theKey = getModSpecialKey(k.vkCode, mod);
-                fin = 1;
+                theKey = getModSpecialKey(k.vkCode, mod, count);
+                isSpecialKey = true;
             } else if( !(theKey = GetSymbolFromVK(k.vkCode, k.scanCode, mod, hklLayout))) {
                 // otherwise try to translate with ToAsciiEx
                 // if fails to translate with ToAsciiEx, then treat it as specialKeys
-                theKey = getModSpecialKey(k.vkCode, mod);
-                fin = 1;
+                theKey = getModSpecialKey(k.vkCode, mod, count);
+                isSpecialKey = true;
             }
 
             if(theKey) {
+                int behavior = 0;
+                if (isSpecialKey) {
+                  behavior = 1;
+                  if (count > 1) behavior = 2;
+                }
+
                 if(mod) {
-                    fin = 1;
-                    swprintf(tmp, 64, L"%s %c %s", modifierkey, comboChars[1], theKey);
+                    if (behavior == 0) behavior = 1;
+                    swprintf(tmp, 64, L"%c%c%s", modifierkey[0], comboChars[1], theKey);
                     addBracket(tmp);
                     theKey = tmp;
                 }
-                if(fin || !onlyCommandKeys) {
-                    showText(theKey, fin);
+                if(behavior || !onlyCommandKeys) {
+                    showText(theKey, behavior);
                 }
             }
         }
+
         lastvk = k.vkCode;
+        repeated_keyinfo.set_key(k.vkCode);
     }
 
     return CallNextHookEx(kbdhook, nCode, wp, lp);
@@ -448,21 +495,35 @@ LRESULT CALLBACK LLMouseProc(int nCode, WPARAM wp, LPARAM lp)
                 }
             }
 
+            bool toshow = false;
             if(modifierkey[0] != '\0') {
                 modifierUsed = TRUE;
-                swprintf(tmp, 64, L"%s %c %s", modifierkey, comboChars[1], c);
-                addBracket(tmp);
-                showText(tmp, behavior);
+                swprintf(tmp, 64, L"%c%c%s", modifierkey[0], comboChars[1], c);
+                toshow = true;
             } else if(GetKeyState(VK_SHIFT) < 0) {
-                swprintf(tmp, 64, L"Shift %c %s", comboChars[1], c);
-                addBracket(tmp);
-                showText(tmp, behavior);
+                swprintf(tmp, 64, L"S%c%s", comboChars[1], c);
+                toshow = true;
             } else if(!mouseCapturingMod) {
                 swprintf(tmp, 64, L"%s", c);
+                toshow = true;
+            }
+
+            DWORD key = 0x8000 | idx;
+            if (idx == 10 && (int) ms->mouseData > 0) key |= 0x4000;
+
+            if (toshow) {
+                DWORD const count = repeated_keyinfo.get_count(key);
+                if (count > 1) {
+                  size_t const len = wcslen(tmp);
+                  swprintf(tmp + len, 64 - len, L" (%u)", (unsigned) count);
+                  behavior = 2;
+                }
+
                 addBracket(tmp);
                 showText(tmp, behavior);
             }
 
+            repeated_keyinfo.set_key(key);
             fadeLastLabel(!holdButton);
         }
     }
